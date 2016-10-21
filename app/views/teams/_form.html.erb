@@ -1,0 +1,45 @@
+<%= form_for(@team, html: {class: "form-horizontal"}) do |f| %>
+
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, t('error')) %> <%= t('error_text') %></h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "control-label col-sm-3 col-md-3" %>
+    <div class="col-sm-7 col-md-7">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :range_age_id, class: "control-label col-sm-3 col-md-3" %>
+    <div class="col-sm-7 col-md-7">
+      <%= f.collection_select :range_age_id, @ranges, :id, :name , {include_blank: true} , {:required => 'required', class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :group_id, class: "control-label col-sm-3 col-md-3" %>
+    <div class="col-sm-7 col-md-7">
+      <%= f.collection_select :group_id, @groups, :id, :name , {include_blank: true} , {:required => 'required', class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12 col-md-12">
+      <div class="btn-group pull-right">
+        <%= link_to t('back'), teams_path, class: "btn btn-primary" %>
+        <%= f.submit t('submit'), class: "btn btn-primary"  %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

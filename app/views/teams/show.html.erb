@@ -1,0 +1,53 @@
+<div class="jumbotron">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3><%= @team.name %></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('rangeage', scope: 'activerecord.attributes.rangeAge') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <% if @team.range_age %>
+            <%= @team.range_age.name %> - (<%= @team.range_age.rangeage %>)
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('manager', scope: 'activerecord.attributes.team') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <% if @team.group %>
+            <%= @team.group.name %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%=t('.scouts') %> :</strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <% @team.scouts.each do |scout| %>
+            <%= link_to scout.full_name, scout_path(scout) %><br>
+          <% end %>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <div class="btn-group pull-right">
+              <%= link_to t('edit'), edit_team_path(@team), class: "btn btn-primary" %>
+              <%= link_to t('back'), teams_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

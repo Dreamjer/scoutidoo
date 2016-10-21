@@ -1,0 +1,103 @@
+<div class="jumbotron">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3><%= @scout.firstname %> <%= @scout.lastname %> (<%= @scout.code %>)</h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('email', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.email %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('address', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.address %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('phonehome', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.phonehome %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('phonemobile', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.phonemobile %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('age', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= pluralize(@scout.age(@scout.birth_date), t('years_old')) %>
+        </div>
+      </div>
+
+      <% if @scout.team %>
+        <div class="row">
+          <div class="col-sm-3 col-md-3">
+            <strong><%= t('name', scope: 'activerecord.attributes.team') %></strong>
+          </div>
+          <div class="col-sm-9 col-md-9">
+            <%= @scout.team.name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3 col-md-3">
+            <strong><%= t('name', scope: 'activerecord.attributes.group') %></strong>
+          </div>
+          <div class="col-sm-9 col-md-9">
+            <%= @scout.team.group.name %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('school', scope: 'activerecord.attributes.scout') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.school %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('notes', scope: 'activerecord.attributes.scout') %></strong><br>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @scout.notes %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="btn-group pull-right">
+            <%= link_to t('edit'), edit_scout_path(@scout), class: "btn btn-primary" %>
+            <%= link_to t('back'), scouts_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

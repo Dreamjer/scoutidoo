@@ -1,0 +1,45 @@
+<div class="jumbotron">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3><%= t('.title') %>
+        <%= link_to t('.add'), new_scout_path, class: "btn btn-success pull-right" %>
+      </h3>
+    </div>
+
+    <div class="panel-body">
+
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th><%= t('firstname', scope: 'activerecord.attributes.scout') %></th>
+            <th><%= t('lastname', scope: 'activerecord.attributes.scout') %></th>
+            <th><%= t('email', scope: 'activerecord.attributes.scout') %></th>
+            <th><%= t('birth_date', scope: 'activerecord.attributes.scout') %></th>
+            <th><%= t('name', scope: 'activerecord.attributes.team') %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @scouts.each do |scout| %>
+            <tr>
+              <td><%= scout.firstname %></td>
+              <td><%= scout.lastname %></td>
+              <td><%= scout.email %></td>
+              <td><%= scout.birth_date.strftime("%d/%m/%Y") %></td>
+              <td><%= scout.team.name if scout.team %></td>
+              <td>
+                <div class="btn-group pull-right">
+                  <%= link_to t('show'), scout, class: "btn btn-primary" %>
+                  <%= link_to t('edit'), edit_scout_path(scout), class: "btn btn-primary" %>
+                  <%= link_to t('destroy'), scout, class: "btn btn-primary" , method: :delete, data: { confirm: t('confirm') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

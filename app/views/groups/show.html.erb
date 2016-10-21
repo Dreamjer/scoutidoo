@@ -1,0 +1,48 @@
+<div class="jumbotron">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3><%= @group.name %></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('manager', scope: 'activerecord.attributes.group') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @group.scout.firstname %> <%= @group.scout.lastname %>
+          <%= link_to @group.scout.email, scout_path(@group.scout) if @group.scout %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('location', scope: 'activerecord.attributes.group') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= @group.location %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <strong><%= t('team_list') %></strong>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= render 'teams' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="btn-group pull-right">
+            <%= link_to t('edit'), edit_group_path(@group), class: "btn btn-primary" %>
+            <%= link_to t('back'), groups_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

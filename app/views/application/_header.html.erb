@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><%= link_to t("homepage"), root_path %></li>
+        <li><%= link_to t("manage_groups"), groups_path %></li>
+        <li><%= link_to t("manage_teams"), teams_path %></li>
+        <li><%= link_to t("manage_scouts"), scouts_path %></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to '<span><i class="glyphicon glyphicon-log-out"></i></span> '"#{t('logout')}".html_safe, destroy_user_session_path,
+                          :method => :delete, :data => {:confirm => t('confirmation', :scope => 'devise.sessions')} %></li>
+        <% else %>
+          <li><%= link_to '<span><i class="glyphicon glyphicon-edit"></i></span> '"#{t('signup')}".html_safe, new_user_registration_path %></li>
+          <li><%= link_to '<span><i class="glyphicon glyphicon-log-in"></i></span> '"#{t('login')}".html_safe, new_user_session_path %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</nav>

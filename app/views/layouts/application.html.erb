@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scoutidoo</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+      <div id="header">
+        <%= render 'header' %>
+      </div>
+
+      <div class="container wrapper">
+
+        <% flash.each do |key, value| %>
+          <% next if key.to_s == 'timedout' %>
+          <div class="alert <%= bootstrap_class_for(key) %> alert-dismissable fade in">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= value %>
+          </div>
+        <% end %>
+
+        <div class="row content">
+          <!-- <div class="col-md-1 sidenav">
+            <%#= render "sidenav_left" %>
+          </div> -->
+          <div class="text-left">
+            <%= yield %>
+          </div>
+          <!-- <div class="col-md-1 sidenav">
+            <%#= render "sidenav_right" %>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- <div class="push"></div> -->
+
+      <%= render 'footer' %>
+
+  </body>
+</html>

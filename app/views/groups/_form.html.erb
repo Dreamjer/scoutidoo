@@ -1,0 +1,58 @@
+<%= form_for(@group , html: {class: "form-horizontal"}) do |f| %>
+
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, t('error')) %> <%= t('error_text') %></h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "control-label col-sm-3 col-md-3" %>
+    <div class="col-sm-7 col-md-7">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :location, class: "control-label col-sm-3 col-md-3" %>
+    <div class="col-sm-7 col-md-7">
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('manager', scope: 'activerecord.attributes.group'), class: "control-label col-sm-3 col-md-3" %>
+
+    <div class="col-sm-7 col-md-7">
+      <%= f.fields_for :scout , (@group.build_scout unless @group.scout), include_id: false do |b| %>
+        <%= b.collection_select :id, @scouts, :id, :full_name , {include_blank: true}, {required: true, class: "form-control"} %>
+      <% end %>
+    </div>
+  </div>
+
+  <% unless current_page?(action: 'new') %>
+    <div class="form-group">
+      <%= f.label t('teams', scope: 'activerecord.attributes.group'), class: "control-label col-sm-3 col-md-3" %>
+      <div class="col-sm-7 col-md-7">
+        <%= render 'teams' %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-12 col-md-12">
+      <div class="btn-group pull-right">
+        <%= link_to t('back'), groups_path, class: "btn btn-primary" %>
+        <%= f.submit t('submit'), class: "btn btn-primary"  %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

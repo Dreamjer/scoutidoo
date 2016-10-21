@@ -1,0 +1,163 @@
+<%= form_for(@scout , html: {class: "form-horizontal"}) do |f| %>
+
+  <% if @scout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scout.errors.count, t('error')) %> <%= t('error_text') %></h2>
+
+      <ul>
+      <% @scout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :code , class: "control-label col-md-2"%>
+    <div class="col-md-2">
+      <%= f.text_field :code , required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :firstname , class: "control-label col-md-2" %>
+    <div class="col-md-4">
+      <%= f.text_field :firstname, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lastname , class: "control-label col-md-2" %>
+    <div class="col-md-4">
+      <%= f.text_field :lastname, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email , class: "control-label col-md-2" %>
+    <div class="col-md-4">
+      <%= f.text_field :email, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address , class: "control-label col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :birth_date , class: "control-label col-md-2" %>
+    <div class="col-md-2">
+      <div class="input-group date" id="datepicker">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+        <% if @scout.birth_date %>
+          <%= f.text_field :birth_date, :value => @scout.birth_date.strftime("%d/%m/%Y"), :class => 'form-control' %>
+        <% else %>
+          <%= f.text_field :birth_date, :class => 'form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phonehome, class: "control-label col-md-2" %>
+    <div class="col-md-2">
+      <%= f.text_field :phonehome, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phonemobile, class: "control-label col-md-2" %>
+    <div class="col-md-2">
+      <%= f.text_field :phonemobile, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('manager', scope: 'activerecord.attributes.scout'), class: "control-label col-md-2" %>
+    <div class="col-md-1">
+      <%= f.check_box :manager, class: "checkbox" %>
+    </div>
+
+    <div id="group" class="hidden">
+      <!-- <div class="form-group"> -->
+        <%= f.label t('label', scope: 'activerecord.attributes.group'), class: "control-label col-md-1" %>
+        <div class="col-md-4">
+          <%= f.collection_select :group_id, @groups, :id, :name , {include_blank: true}, class: "form-control" %>
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <div id="team" class="hidden">
+      <!-- <div class="form-group"> -->
+        <%= f.label t('label', scope: 'activerecord.attributes.team'), class: "control-label col-md-1" %>
+        <div class="col-md-4">
+          <%= f.collection_select :team_id, @teams, :id, :name , {include_blank: true}, class: "form-control" %>
+        </div>
+      <!-- </div> -->
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <%= f.label :school , class: "control-label col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_area :school , cols: "80" , rows: "3", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :notes, class: "control-label col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_area :notes , cols: "80" , rows: "3", class: "form-control" %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <div class="btn-group pull-right">
+        <%= link_to t('back'), scouts_path, class: "btn btn-primary" %>
+        <%= f.submit t('submit'), class: "btn btn-primary"  %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<script>
+$(document).ready(function() {
+
+  // datepicker
+  $('#datepicker').datepicker({
+    format:    "dd/mm/yyyy",
+    startDate: "01/01/1940",
+    startView: 2,
+    language:  "<%= I18n.locale.to_s %>",
+    clearBtn:  true,
+    autoclose: true
+  })
+
+  if ($('#scout_manager').is(':checked')) {
+    $('#group').removeClass('hidden');
+  } else {
+    $('#team').removeClass('hidden');
+  }
+
+  $('#scout_manager').on('change', function() {
+    var $checkbox = $(this);
+    if ( $checkbox.prop('checked') ) {
+      $('#group').removeClass('hidden');
+      $('#team').addClass('hidden');
+    } else {
+      $('#team').removeClass('hidden');
+      $('#group').addClass('hidden');
+    }
+  });
+});
+
+</script>

@@ -1,0 +1,87 @@
+fr:
+  hello: "Coucou les loulous"
+  homepage: Accueil
+  login: Connexion
+  logout: Deconnexion
+  signup: Créer un compte
+  forgot_password: Mot de passe oublié ?
+  change_password: Modifier votre mot de passe
+  character: caractère
+  mandatory_field: champ obligatoire
+  send_reset_password_instructions: Renvoyer les instructions de confirmation
+  manage_groups: Groupes
+  manage_teams: Equipes
+  manage_scouts: Scouts
+  confirm: Etes vous sûr ?
+  back: Retour
+  edit: Editer
+  submit: Valider
+  show: Afficher
+  edit: Editer
+  destroy: Supprimer
+  error: erreur
+  age: Age
+  years_old: an
+  team_list: Equipes inclues
+  error_text: empêche(nt) la sauvegarde
+  notice_updated: "%{obj} %{name} a été mis à jour"
+  notice_created: "%{obj} %{name} a été créé(e)"
+  notice_deleted: "%{obj} %{name} a été supprimé(e)"
+  groups:
+    index:
+      title: Gestion des groupes
+      add: Ajouter un groupe
+    edit:
+      title: Edition du groupe
+    new:
+      title: Création d'un groupe
+  teams:
+    index:
+      title: Gestion des équipes
+      add: Ajouter une équipe
+    edit:
+      title: Edition de l'équipe
+    new:
+      title: Création d'une équipe
+    show:
+      scouts: Scouts de l'équipe
+  scouts:
+    index:
+      title: Gestion des scouts
+      add: Ajouter un scout
+    edit:
+      title: Edition du scout
+    new:
+      title: Création d'un scout
+  activerecord:
+    attributes:
+      group:
+        label: Groupe
+        name: Nom du groupe
+        location: Zone géographique
+        manager: Responsable
+        teams: Equipes du groupe
+      team:
+        label: Equipe
+        name: Nom de l'équipe
+        manager: Consultant(s)
+        scout_number: Nb Animateurs
+      scout:
+        label: Scout
+        code: Code
+        email: Email
+        firstname: Prénom
+        lastname: Nom
+        address: Adresse
+        phonehome: Téléphone
+        phonemobile: Mobile
+        school: Formation
+        notes: Notes
+        birth_date: Date de naissance
+        manager: Responsable ?
+      rangeAge:
+        name: Titre
+        rangeage: Tranche d'âge
+    errors:
+      messages:
+        taken: déjà présent

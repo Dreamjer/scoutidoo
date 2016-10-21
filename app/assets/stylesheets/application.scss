@@ -1,0 +1,8 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+// @import "bootstrap-variables";
+@import "bootstrap-sprockets";
+@import 'bootstrap-custom';
+@import "bootstrap-datepicker3.css";
+
+// @import "scaffolds";
+@import "welcome";
